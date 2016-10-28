@@ -21,6 +21,7 @@ function reset()
 {
     xaxis = 400;
     yaxis = 400;
+    document.getElementById("gogostop").value = "";
     ctx.clearRect(0,0,800,800);
     drawObject(ctx,xaxis,yaxis);
 }
@@ -28,9 +29,61 @@ function reset()
 function up()
 {
     ctx.save()
-    ctx.clearRect(0,0,800,800);
-    drawObject(ctx,xaxis,yaxis-10);
-    ctx.restore();
+    if(yaxis < 40)
+    {
+        document.getElementById("gogostop").value = "STOP";    
+    }else
+        { 
+            ctx.clearRect(0,0,800,800);
+            drawObject(ctx,xaxis,yaxis-10);
+            ctx.restore();
+            yaxis -=10;   
+        }
+}
+
+function down()
+{
+    ctx.save()
+    if(yaxis > 765)
+    {
+        document.getElementById("gogostop").value = "NO YOU'LL HURT IT";
+    }else
+        { 
+            ctx.clearRect(0,0,800,800);
+            drawObject(ctx,xaxis,yaxis+10);
+            ctx.restore();
+            yaxis +=10;   
+        }
+}
+
+function left()
+{
+    ctx.save()
+    if(xaxis < 40)
+    {
+        document.getElementById("gogostop").value = "SERIOUSLY DON'T";
+    }else
+        {
+            ctx.clearRect(0,0,800,800);
+            drawObject(ctx,xaxis-10,yaxis);
+            ctx.restore();
+            xaxis -=10;
+        }
+}
+
+function right()
+{
+    ctx.save()
+    if(xaxis > 765)
+    {
+        document.getElementById("gogostop").value = "BAD IDEA";
+    }else
+        {
+            ctx.clearRect(0,0,800,800);
+            drawObject(ctx,xaxis+10,yaxis);
+            ctx.restore();
+            xaxis +=10;
+        }
 }
 
 drawObject(ctx,xaxis,yaxis);
